@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import useAuth from "../hooks/useAuth";
 
@@ -26,13 +26,13 @@ export default function Register() {
   }
 
   return (
-    <div className="p-6 max-w-md mx-auto">
+    <div className="p-6 w-full max-w-lg mx-auto h-[calc(100vh-4rem)] sm:h-[calc(100vh-8rem)] flex flex-col items-center justify-center">
       <Card
         title="Register"
-        titleClassName="!font-bold"
-          titleAlign="center"
+        titleClassName="!font-bold !text-2xl"
+        titleAlign="center"
+        className="w-full"
       >
-
         <form onSubmit={onSubmit} className="flex flex-col space-y-4">
           <Input
             value={form.full_name}
