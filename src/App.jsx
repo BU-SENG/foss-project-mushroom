@@ -1,11 +1,16 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import StudentDashboard from "./pages/StudentDashboard";
 
 function App() {
-
   return (
-    <div className="h-screen w-full flex items-center justify-center text-red-700 text-2xl font-black">
-        <span>FOSS</span>
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/student/dashboard" element={<StudentDashboard />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
