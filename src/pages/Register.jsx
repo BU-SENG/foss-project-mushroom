@@ -27,59 +27,58 @@ export default function Register() {
 
   return (
     <div className="p-6 max-w-md mx-auto">
-      <Card>
-        {/* <CardHeader> */}
-          <h2 className="text-2xl text-center">Register</h2>
-        {/* </CardHeader> */}
+      <Card
+        title="Register"
+        titleClassName="!font-bold"
+          titleAlign="center"
+      >
 
-        {/* <CardContent> */}
-          <form onSubmit={onSubmit} className="flex flex-col space-y-4">
-            <Input
-              value={form.full_name}
-              onChange={(e) => setForm({ ...form, full_name: e.target.value })}
-              placeholder="Full name"
-            />
+        <form onSubmit={onSubmit} className="flex flex-col space-y-4">
+          <Input
+            value={form.full_name}
+            onChange={(e) => setForm({ ...form, full_name: e.target.value })}
+            placeholder="Full name"
+          />
 
-            <Input
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              placeholder="Email"
-              type="email"
-            />
+          <Input
+            value={form.email}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            placeholder="Email"
+            type="email"
+          />
 
-            <Input
-              value={form.password}
-              onChange={(e) => setForm({ ...form, password: e.target.value })}
-              placeholder="Password"
-              type="password"
-            />
+          <Input
+            value={form.password}
+            onChange={(e) => setForm({ ...form, password: e.target.value })}
+            placeholder="Password"
+            type="password"
+          />
 
-            <Input
-              value={form.confirm_password}
-              onChange={(e) =>
-                setForm({ ...form, confirm_password: e.target.value })
-              }
-              placeholder="Confirm Password"
-              type="password"
-            />
+          <Input
+            value={form.confirm_password}
+            onChange={(e) =>
+              setForm({ ...form, confirm_password: e.target.value })
+            }
+            placeholder="Confirm Password"
+            type="password"
+          />
 
-            {form.password !== form.confirm_password &&
-              form.confirm_password.length > 0 && (
-                <p className="text-red-500 text-sm">Passwords do not match</p>
-              )}
+          {form.password !== form.confirm_password &&
+            form.confirm_password.length > 0 && (
+              <p className="text-red-500 text-sm">Passwords do not match</p>
+            )}
 
-            <Button
-              disabled={
-                !form.full_name ||
-                !form.email ||
-                !form.password ||
-                form.password !== form.confirm_password
-              }
-            >
-              Create account
-            </Button>
-          </form>
-        {/* </CardContent> */}
+          <Button
+            disabled={
+              !form.full_name ||
+              !form.email ||
+              !form.password ||
+              form.password !== form.confirm_password
+            }
+          >
+            Create account
+          </Button>
+        </form>
       </Card>
     </div>
   );
