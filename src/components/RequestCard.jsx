@@ -1,6 +1,10 @@
-import { Card, StatusBadge } from "./ui";
+import Card from "./ui/Card";
+import StatusBadge from "./ui/StatusBadge";
 
 export default function RequestCard({ request }) {
+  const formattedStatus =
+    request.status.slice(0, 1).toUpperCase() + request.status.slice(1);
+
   return (
     <Card className="p-4">
       <div className="flex justify-between items-center">
@@ -10,7 +14,7 @@ export default function RequestCard({ request }) {
           <p className="text-gray-400 text-xs">{request.date}</p>
         </div>
 
-        <StatusBadge status={request.status} />
+        <StatusBadge status={formattedStatus} />
       </div>
     </Card>
   );
