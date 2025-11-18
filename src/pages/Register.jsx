@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import useAuth from "../hooks/useAuth";
 
-import { Card, CardHeader, CardContent, Input, Button } from "../components/ui";
+import { Card, Input, Button } from "../components/ui";
 
 export default function Register() {
   // const { signUp } = useAuth();
@@ -28,11 +28,11 @@ export default function Register() {
   return (
     <div className="p-6 max-w-md mx-auto">
       <Card>
-        <CardHeader>
+        {/* <CardHeader> */}
           <h2 className="text-2xl text-center">Register</h2>
-        </CardHeader>
+        {/* </CardHeader> */}
 
-        <CardContent>
+        {/* <CardContent> */}
           <form onSubmit={onSubmit} className="flex flex-col space-y-4">
             <Input
               value={form.full_name}
@@ -79,7 +79,7 @@ export default function Register() {
               Create account
             </Button>
           </form>
-        </CardContent>
+        {/* </CardContent> */}
       </Card>
     </div>
   );
