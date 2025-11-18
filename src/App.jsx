@@ -1,11 +1,14 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Register from "./pages/Register";
 
 function App() {
-
   return (
-    <div className="h-screen w-full flex items-center justify-center text-red-700 text-2xl font-black">
-        <span>FOSS</span>
-    </div>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<Register />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
