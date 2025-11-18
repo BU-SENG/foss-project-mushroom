@@ -2,7 +2,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import RequestCard from "../components/RequestCard";
 
 export default function StudentDashboard() {
-  // Temporary mock data before backend integration
+  // Temporary mock data until auth + backend are ready
   const requests = [
     {
       id: 1,
@@ -15,7 +15,7 @@ export default function StudentDashboard() {
       id: 2,
       room: "D04",
       issue: "Water leakage",
-      status: "in_review",
+      status: "resolved",
       date: "2025-11-17",
     },
   ];
@@ -34,3 +34,5 @@ export default function StudentDashboard() {
     </DashboardLayout>
   );
 }
+
+
