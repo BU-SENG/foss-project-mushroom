@@ -20,3 +20,5 @@ export default function DashboardLayout({ title, children }) {
     </div>
   );
 }
+
+
