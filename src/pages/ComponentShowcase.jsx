@@ -57,6 +57,26 @@ export default function ComponentShowcase() {
             </Card>
           </div>
         </Card>
+        <Card title="Register" titleAlign="center">
+          <p>
+            This card demonstrates a centered title using the{" "}
+            <code>titleAlign</code> prop.
+          </p>
+        </Card>
+
+        <Card
+          title="Bigger bold title"
+          titleClassName="!text-4xl"
+          titleStyle={{ fontWeight: 700 }}
+        >
+          This card has a larger, bold title for emphasis. It uses attribute{" "}
+          <code>titleClassName</code> and <code>titleStyle</code> to style the title.
+        </Card>
+        <Card title="Colored title" titleClassName="text-red-600" />
+        <Card
+          title="Cute soft title"
+          titleClassName="!text-gray-500 !font-medium"
+        />
 
         {/* STATUS BADGE SECTION */}
         <Card title="StatusBadge Variants">
