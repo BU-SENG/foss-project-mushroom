@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 // import useAuth from "../hooks/useAuth";
 
 import { Card, Input, Button } from "../components/ui";
+import { supabase } from "../utils/supabase";
 
 export default function Register() {
-  // const { signUp } = useAuth();
   const nav = useNavigate();
   const [form, setForm] = useState({
     email: "",
@@ -14,14 +14,61 @@ export default function Register() {
     confirm_password: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   async function onSubmit(e) {
     e.preventDefault();
+    setError(null);
+
+    if (!form.full_name || !form.email || !form.password) {
+      setError("Please fill all required fields");
+      return;
+    }
+
+    if (form.password !== form.confirm_password) {
+      setError("Passwords do not match");
+      return;
+    }
+
+    setLoading(true);
     try {
-      // await signUp({ ...form, role: "student" });
-      alert("Check email for confirmation then login");
+      const { data, error: signUpError } = await supabase.auth.signUp({
+        email: form.email,
+        password: form.password,
+      });
+
+      if (signUpError) {
+        setError(signUpError.message || "Unable to create account");
+        setLoading(false);
+        return;
+      }
+
+      const userId = data?.user?.id;
+
+      // try to create a profile row (may fail depending on RLS/policies)
+      if (userId) {
+        const { error: profileError } = await supabase.from("profiles").insert([
+          {
+            id: userId,
+            full_name: form.full_name,
+            role: "student",
+          },
+        ]);
+
+        if (profileError) {
+          // Non-fatal: profile insert may fail if policies are strict; inform user
+          console.warn("Could not create profile row:", profileError.message);
+        }
+      }
+
+      // If email confirmations are enabled, user must confirm via email
+      alert("Account created. Check your email to confirm (if required), then login.");
       nav("/login");
     } catch (err) {
-      alert(err.message);
+      setError(err?.message || "Unexpected error");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -52,6 +99,7 @@ export default function Register() {
             onChange={(e) => setForm({ ...form, password: e.target.value })}
             placeholder="Password"
             type="password"
+            showToggle
           />
 
           <Input
@@ -61,22 +109,21 @@ export default function Register() {
             }
             placeholder="Confirm Password"
             type="password"
+            showToggle
           />
 
-          {form.password !== form.confirm_password &&
-            form.confirm_password.length > 0 && (
-              <p className="text-red-500 text-sm">Passwords do not match</p>
-            )}
+          {error && <p className="text-red-500 text-sm">{error}</p>}
 
           <Button
             disabled={
               !form.full_name ||
               !form.email ||
               !form.password ||
-              form.password !== form.confirm_password
+              form.password !== form.confirm_password ||
+              loading
             }
           >
-            Create account
+            {loading ? "Creating..." : "Create account"}
           </Button>
         </form>
       </Card>
