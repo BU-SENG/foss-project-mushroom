@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import useAuth from "../hooks/useAuth";
+import useAuth from "../hooks/useAuth";
 
 import { Card, Input, Button } from "../components/ui";
-import { supabase } from "../utils/supabase";
 
 export default function Register() {
   const nav = useNavigate();
+  const { register, loading } = useAuth();
+
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -14,7 +15,6 @@ export default function Register() {
     confirm_password: "",
   });
 
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   async function onSubmit(e) {
@@ -31,45 +31,22 @@ export default function Register() {
       return;
     }
 
-    setLoading(true);
-    try {
-      const { data, error: signUpError } = await supabase.auth.signUp({
-        email: form.email,
-        password: form.password,
-      });
+    const { error: regError } = await register({
+      email: form.email,
+      password: form.password,
+      full_name: form.full_name,
+      role: "student",
+    });
 
-      if (signUpError) {
-        setError(signUpError.message || "Unable to create account");
-        setLoading(false);
-        return;
-      }
-
-      const userId = data?.user?.id;
-
-      // try to create a profile row (may fail depending on RLS/policies)
-      if (userId) {
-        const { error: profileError } = await supabase.from("profiles").insert([
-          {
-            id: userId,
-            full_name: form.full_name,
-            role: "student",
-          },
-        ]);
-
-        if (profileError) {
-          // Non-fatal: profile insert may fail if policies are strict; inform user
-          console.warn("Could not create profile row:", profileError.message);
-        }
-      }
-
-      // If email confirmations are enabled, user must confirm via email
-      alert("Account created. Check your email to confirm (if required), then login.");
-      nav("/login");
-    } catch (err) {
-      setError(err?.message || "Unexpected error");
-    } finally {
-      setLoading(false);
+    if (regError) {
+      setError(regError.message || "Unable to create account");
+      return;
     }
+
+    alert(
+      "Account created. Check your email to confirm (if required), then login."
+    );
+    nav("/login");
   }
 
   return (
