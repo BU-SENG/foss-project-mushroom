@@ -1,0 +1,31 @@
+issue_type,description,room_number,status,submission_date
+Electrical,Light bulb not working,A101,Pending,2025-11-01
+Plumbing,Leaking tap in bathroom,A102,In Progress,2025-11-02
+Carpentry,Broken chair leg,B201,Resolved,2025-11-03
+Internet,WiFi disconnects frequently,C301,Pending,2025-11-04
+Cleaning,Spilled coffee stain on carpet,D401,Pending,2025-11-05
+Electrical,⚡ Power outage in room,E101,Pending,2025-11-06
+Plumbing,Shower drain clogged,E102,In Progress,2025-11-07
+Carpentry,Door hinge loose,F201,Resolved,2025-11-08
+Internet,Router overheating,F202,Pending,2025-11-09
+Cleaning,Trash not collected,F203,Pending,2025-11-10
+Electrical,Fan making noise,G301,In Progress,2025-11-11
+Plumbing,Toilet flush broken,G302,Pending,2025-11-12
+Carpentry,Table leg cracked,H101,Resolved,2025-11-13
+Internet,No connection,H102,Pending,2025-11-14
+Cleaning,Window stains,H103,Pending,2025-11-15
+Electrical,Socket sparks when used,A103,Pending,2025-11-16
+Plumbing,Pipe leakage under sink,B202,In Progress,2025-11-17
+Carpentry,Bed frame unstable,C302,Resolved,2025-11-18
+Internet,Slow speed,D402,Pending,2025-11-19
+Cleaning,Floor sticky,E103,Pending,2025-11-20
+Electrical,Duplicate request for bulb,A101,Pending,2025-11-21
+Plumbing,,B201,Pending,2025-11-22
+Carpentry,Chair broken again,B201,Pending,2025-11-23
+Internet,WiFi password reset needed,C301,Resolved,2025-11-24
+Cleaning,Unusual smell in corridor,D401,Pending,2025-11-25
+Electrical,Overhead light flickering,E102,In Progress,2025-11-26
+Plumbing,Tap dripping continuously,F201,Pending,2025-11-27
+Carpentry,Desk drawer jammed,F202,Resolved,2025-11-28
+Internet,Connection drops every hour,G301,Pending,2025-11-29
+Cleaning,Spilled juice stain,G302,Pending,2025-11-30
