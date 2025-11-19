@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Register from "./pages/Register";
 import ComponentShowcase from "./pages/ComponentShowcase.jsx";
 import Home from "./pages/Home.jsx";
+import StudentDashboard from "./pages/StudentDashboard";
 import NotFound from "./pages/NotFound.jsx";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/component-showcase" element={<ComponentShowcase />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/student/dashboard" element={<StudentDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
