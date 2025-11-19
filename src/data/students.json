@@ -1,0 +1,22 @@
+[
+  {"full_name": "Alice Johnson", "room_number": "A101", "email": "alice.johnson@babcock.edu.ng"},
+  {"full_name": "Bob Smith", "room_number": "A102", "email": "bob.smith@babcock.edu.ng"},
+  {"full_name": "Chinedu Okafor", "room_number": "A103", "email": "chinedu.okafor@babcock.edu.ng"},
+  {"full_name": "Grace Williams", "room_number": "B201", "email": "grace.williams@babcock.edu.ng"},
+  {"full_name": "José Álvarez", "room_number": "B202", "email": "jose.alvarez@babcock.edu.ng"},
+  {"full_name": "Duplicate Name", "room_number": "C301", "email": "duplicate@babcock.edu.ng"},
+  {"full_name": "Duplicate Name", "room_number": "C302", "email": "duplicate2@babcock.edu.ng"},
+  {"full_name": "Fatima Bello", "room_number": "D401", "email": "fatima.bello@babcock.edu.ng"},
+  {"full_name": "Kwame Mensah", "room_number": "D402", "email": "kwame.mensah@babcock.edu.ng"},
+  {"full_name": "Missing Email", "room_number": "E101"},
+  {"full_name": "Oluwaseun Adeyemi", "room_number": "E102", "email": "oluwaseun.adeyemi@babcock.edu.ng"},
+  {"full_name": "Maryam Hassan", "room_number": "E103", "email": "maryam.hassan@babcock.edu.ng"},
+  {"full_name": "David Brown", "room_number": "F201", "email": "david.brown@babcock.edu.ng"},
+  {"full_name": "Sarah Lee", "room_number": "F202", "email": "sarah.lee@babcock.edu.ng"},
+  {"full_name": "Ahmed Musa", "room_number": "F203", "email": "ahmed.musa@babcock.edu.ng"},
+  {"full_name": "Zhang Wei", "room_number": "G301", "email": "zhang.wei@babcock.edu.ng"},
+  {"full_name": "Emily Davis", "room_number": "G302", "email": "emily.davis@babcock.edu.ng"},
+  {"full_name": "John Doe", "room_number": "H101", "email": "john.doe@babcock.edu.ng"},
+  {"full_name": "Jane Doe", "room_number": "H102", "email": "jane.doe@babcock.edu.ng"},
+  {"full_name": "Tosin Adebayo", "room_number": "H103", "email": "tosin.adebayo@babcock.edu.ng"}
+]
