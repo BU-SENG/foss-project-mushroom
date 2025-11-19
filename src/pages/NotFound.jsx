@@ -3,7 +3,6 @@ import { Home, ArrowLeft, Search } from 'lucide-react';
 
 export default function NotFound() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    const [isHovering, setIsHovering] = useState(false);
 
     useEffect(() => {
         const handleMouseMove = (e) => {
@@ -78,8 +77,7 @@ export default function NotFound() {
                 {/* Action buttons */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <button
-                        onMouseEnter={() => setIsHovering(true)}
-                        onMouseLeave={() => setIsHovering(false)}
+                        
                         className="group flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
                         onClick={() => window.location.href = '/'}
                     >
