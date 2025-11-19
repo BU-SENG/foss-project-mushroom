@@ -1,5 +1,4 @@
-import Card from "./ui/Card";
-import StatusBadge from "./ui/StatusBadge";
+import {Card, StatusBadge} from "./ui";
 
 export default function RequestCard({ request }) {
   const formattedStatus =
