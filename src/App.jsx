@@ -1,17 +1,21 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Register from "./pages/Register";
 import ComponentShowcase from "./pages/ComponentShowcase.jsx";
 import Home from "./pages/Home.jsx";
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50 p-4 sm:p-8 font-sans">
+    <div className="min-h-screen bg-gray-50 font-sans">
       <Router>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/component-showcase" element={<ComponentShowcase />} />
           <Route path="/register" element={<Register />} />
         </Routes>
+        <Footer />
       </Router>
     </div>
   );
