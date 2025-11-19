@@ -6,7 +6,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <main className="flex-1 flex flex-col">
-        {/* Hero Section */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 md:py-32 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-gray-900 leading-tight">
             Manage Hostel Maintenance <br className="hidden sm:inline" />
@@ -40,15 +39,14 @@ export default function Home() {
 
           <div className="mt-16 w-full max-w-5xl mx-auto overflow-hidden rounded-xl border-4 border-gray-200 shadow-2xl transition duration-300 hover:shadow-indigo-300/50">
             <img
-              src="https://picsum.photos/1600/1000"
+              src="https://picsum.photos/1600/600"
               alt="Dashboard Screenshot"
               className="w-full h-auto object-cover"
             />
           </div>
         </section>
 
-        {/* Features Section */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-12 text-center">
             Focus On What Matters, We Handle The Rest
           </h2>
