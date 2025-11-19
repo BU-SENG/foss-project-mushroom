@@ -1,6 +1,6 @@
 import { Button, Card } from "../components/ui";
 import { Link } from "react-router-dom";
-import { Bolt, CalendarCheck, Clock } from "lucide-react";
+import {Bolt, CalendarCheck, Clock, Sidebar} from "lucide-react";
 
 export default function Home() {
   return (
