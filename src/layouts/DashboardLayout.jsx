@@ -1,21 +1,11 @@
-// src/layouts/DashboardLayout.jsx
-
-import React from 'react';
 import { useAuth } from '../hooks/useAuth';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 
-/**
- * Layout component for all authenticated dashboard routes.
- * It combines the fixed Header and Sidebar, and correctly spaces the main content.
- */
 const DashboardLayout = ({ title, children }) => {
   const { profile } = useAuth();
   const role = profile?.role;
   console.log(profile);
-  
-
-  // We rely on ProtectedRoute in App.jsx to ensure the user is logged in before this renders.
   
   return (
     <>
