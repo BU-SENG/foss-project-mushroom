@@ -140,7 +140,7 @@ const RequestList = ({ requests, role, onRefresh, onExportClick }) => {
           </div>
         </div>
 
-        <div className={`hidden md:grid grid-cols-${isAdmin ? "14" : "12"} font-semibold text-gray-600 border-b pb-2 px-4`}>
+        <div className="hidden md:grid grid-cols-14 font-semibold text-gray-600 border-b pb-2 px-4">
           <span
             className="col-span-4 cursor-pointer flex items-center"
             onClick={() => handleSortChange("category")}
@@ -168,7 +168,7 @@ const RequestList = ({ requests, role, onRefresh, onExportClick }) => {
             sortedAndFilteredRequests.map((request) => (
               <div
                 key={request.id}
-                className={`grid grid-cols-1 md:grid-cols-${isAdmin ? "14" : "12"} gap-2 md:gap-4 items-start md:items-center py-4 px-4 hover:bg-gray-50 transition-colors relative`}
+                className="grid grid-cols-1 md:grid-cols-14 gap-2 md:gap-4 items-start md:items-center py-4 px-4 hover:bg-gray-50 transition-colors relative"
               >
                 <div className="col-span-4 flex flex-col">
                   <span className="font-medium text-gray-800 capitalize">
