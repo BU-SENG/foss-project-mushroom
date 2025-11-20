@@ -1,4 +1,4 @@
-import React, {
+import {
   createContext,
   useContext,
   useEffect,
@@ -15,7 +15,6 @@ export function AuthProvider({ children }) {
   const [role, setRole] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetch user profile from DB
   const fetchProfile = useCallback(async (userId) => {
     if (!userId) return null;
 
@@ -32,26 +31,15 @@ export function AuthProvider({ children }) {
     return data;
   }, []);
 
-  // Sync session + auth state changes
   useEffect(() => {
     let mounted = true;
 
-    const init = async () => {
-      const { data } = await supabase.auth.getSession();
-      const currentUser = data?.session?.user || null;
-
-      if (mounted) {
-        setUser(currentUser);
-        if (currentUser) await fetchProfile(currentUser.id);
-        setLoading(false);
-      }
-    };
-
-    init();
-
     const { data: { subscription } = {} } = supabase.auth.onAuthStateChange(
       async (_event, session) => {
+        if (!mounted) return;
+
         const currentUser = session?.user || null;
+
         setUser(currentUser);
 
         if (currentUser) {
@@ -71,54 +59,6 @@ export function AuthProvider({ children }) {
     };
   }, [fetchProfile]);
 
-  // Register
-  // const register = async ({
-  //   email,
-  //   password,
-  //   full_name = null,
-  //   role = "student",
-  // }) => {
-  //   setLoading(true);
-  //   const { data, error } = await supabase.auth.signUp({ email, password });
-
-  //   if (error) {
-  //     setLoading(false);
-  //     return { error };
-  //   }
-
-  //   const userId = data?.user?.id;
-
-  //   if (userId) {
-  //     await supabase.from("profiles").insert([{ id: userId, full_name, role }]);
-  //     await fetchProfile(userId);
-  //   }
-
-  //   setLoading(false);
-  //   return { data };
-  // };
-
-  // // Login
-  // const login = async ({ email, password }) => {
-  //   setLoading(true);
-
-  //   const { data, error } = await supabase.auth.signInWithPassword({
-  //     email,
-  //     password,
-  //   });
-
-  //   if (error) {
-  //     setLoading(false);
-  //     return { error };
-  //   }
-
-  //   const userId = data?.user?.id;
-  //   if (userId) await fetchProfile(userId);
-
-  //   setLoading(false);
-  //   return { data };
-  // };
-
-  // Login
   const login = async ({ email, password }) => {
     setLoading(true);
 
@@ -129,7 +69,7 @@ export function AuthProvider({ children }) {
 
     if (error) {
       setLoading(false);
-      return { error: error.message || "Login failed" }; // FIX
+      return { error: error.message || "Login failed" };
     }
 
     const userId = data?.user?.id;
@@ -139,7 +79,6 @@ export function AuthProvider({ children }) {
     return { data };
   };
 
-  // Register
   const register = async ({
     email,
     password,
@@ -152,7 +91,7 @@ export function AuthProvider({ children }) {
 
     if (error) {
       setLoading(false);
-      return { error: error.message || "Registration failed" }; // FIX
+      return { error: error.message || "Registration failed" };
     }
 
     const userId = data?.user?.id;
@@ -166,14 +105,41 @@ export function AuthProvider({ children }) {
     return { data };
   };
 
-  // Logout
   const logout = async () => {
     setLoading(true);
-    await supabase.auth.signOut();
-    setUser(null);
-    setProfile(null);
-    setRole(null);
-    setLoading(false);
+
+    try {
+      const { error } = await supabase.auth.signOut();
+
+      if (error) {
+        console.error("Logout Error:", error.message);
+      }
+
+      setUser(null);
+      setProfile(null);
+      setRole(null);
+
+      localStorage.clear();
+      sessionStorage.clear();
+
+      clearAllCookies();
+    } catch (e) {
+      console.error("Critical Logout Failure:", e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const clearAllCookies = () => {
+    const cookies = document.cookie.split(";");
+
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i];
+      const eqPos = cookie.indexOf("=");
+      const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+
+      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+    }
   };
 
   return (
@@ -194,7 +160,6 @@ export function AuthProvider({ children }) {
   );
 }
 
-// Consumer hook
 export function useAuth() {
   const ctx = useContext(AuthContext);
   if (!ctx) throw new Error("useAuth must be used within an AuthProvider");
