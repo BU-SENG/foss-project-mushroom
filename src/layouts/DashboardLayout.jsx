@@ -5,7 +5,6 @@ import Sidebar from '../components/Sidebar';
 const DashboardLayout = ({ title, children }) => {
   const { profile } = useAuth();
   const role = profile?.role;
-  console.log(profile);
   
   return (
     <>

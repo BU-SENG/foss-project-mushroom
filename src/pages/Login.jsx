@@ -56,7 +56,6 @@ export default function Login() {
   useEffect(() => {
     if (user) {
       nav("/dashboard");
-      console.log(user);
     }
   }, [user]);
 
