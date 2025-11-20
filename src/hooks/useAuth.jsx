@@ -19,10 +19,10 @@ export function AuthProvider({ children }) {
     if (!userId) return null;
 
     const { data, error } = await supabase
-      .from("profiles")
-      .select("id, full_name, role")
-      .eq("id", userId)
-      .single();
+        .from("profiles")
+        .select("id, full_name, role")
+        .eq("id", userId)
+        .single();
 
     if (error) return null;
 
@@ -34,23 +34,33 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     let mounted = true;
 
-    const { data: { subscription } = {} } = supabase.auth.onAuthStateChange(
-      async (_event, session) => {
-        if (!mounted) return;
 
-        const currentUser = session?.user || null;
+    const handleSession = async (session) => {
+      const currentUser = session?.user || null;
+      setUser(currentUser);
 
-        setUser(currentUser);
-
-        if (currentUser) {
-          await fetchProfile(currentUser.id);
-        } else {
-          setProfile(null);
-          setRole(null);
-        }
-
-        setLoading(false);
+      if (currentUser) {
+        await fetchProfile(currentUser.id);
+      } else {
+        setProfile(null);
+        setRole(null);
       }
+
+      if (mounted) setLoading(false);
+    };
+
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (mounted) {
+        handleSession(session);
+      }
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+        (_event, session) => {
+          if (mounted) {
+            handleSession(session);
+          }
+        }
     );
 
     return () => {
@@ -80,11 +90,11 @@ export function AuthProvider({ children }) {
   };
 
   const register = async ({
-    email,
-    password,
-    full_name = null,
-    role = "student",
-  }) => {
+                            email,
+                            password,
+                            full_name = null,
+                            role = "student",
+                          }) => {
     setLoading(true);
 
     const { data, error } = await supabase.auth.signUp({ email, password });
@@ -115,13 +125,14 @@ export function AuthProvider({ children }) {
         console.error("Logout Error:", error.message);
       }
 
+      // Reset state immediately
       setUser(null);
       setProfile(null);
       setRole(null);
 
+      // Clear local storage
       localStorage.clear();
       sessionStorage.clear();
-
       clearAllCookies();
     } catch (e) {
       console.error("Critical Logout Failure:", e);
@@ -143,20 +154,20 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        profile,
-        role,
-        loading,
-        register,
-        login,
-        logout,
-        fetchProfile,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
+      <AuthContext.Provider
+          value={{
+            user,
+            profile,
+            role,
+            loading,
+            register,
+            login,
+            logout,
+            fetchProfile,
+          }}
+      >
+        {children}
+      </AuthContext.Provider>
   );
 }
 
