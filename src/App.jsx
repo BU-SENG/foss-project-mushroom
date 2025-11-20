@@ -1,17 +1,24 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth";
 import ProtectedRoute from "./components/ProtectedRoute";
-import PublicRoute from "./components/PublicRoute";
+// import PublicRoute from "./components/PublicRoute";
 import Footer from "./components/Footer";
 import Home from "./pages/Home.jsx";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import ComponentShowcase from "./pages/ComponentShowcase.jsx";
 import StudentDashboard from "./pages/StudentDashboard";
+import CreateRequest from "./pages/CreateRequest";
 import NotFound from "./pages/NotFound.jsx";
-// import AdminDashboard from "./pages/AdminDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
 import DashboardLayout from "./layouts/DashboardLayout";
 import Header from "./components/Header";
+
+const ProtectedDashboardRoute = ({ element, allowedRoles = [] }) => (
+  <ProtectedRoute allowedRoles={allowedRoles}>
+    <DashboardLayout>{element}</DashboardLayout>
+  </ProtectedRoute>
+);
 
 function App() {
   const { role } = useAuth();
@@ -23,22 +30,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/component-showcase" element={<ComponentShowcase />} />
-          <Route
-            path="/register"
-            element={
-              // <PublicRoute>
-                <Register />
-              // </PublicRoute>
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              // <PublicRoute>
-                <Login />
-              // </PublicRoute>
-            }
-          />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
           <Route
             path="/admin/*"
             element={
@@ -59,15 +52,20 @@ function App() {
           <Route
             path="/dashboard"
             element={
-              <ProtectedRoute>
-                <DashboardLayout>
-                  {role === "admin" ? (
-                    <ComponentShowcase />
-                  ) : (
-                    <StudentDashboard />
-                  )}
-                </DashboardLayout>
-              </ProtectedRoute>
+              <ProtectedDashboardRoute
+                element={
+                  role === "admin" ? <AdminDashboard /> : <StudentDashboard />
+                }
+              />
+            }
+          />
+          <Route
+            path="/dashboard/new"
+            element={
+              <ProtectedDashboardRoute
+                element={<CreateRequest />}
+                allowedRoles={["student"]}
+              />
             }
           />
         </Routes>
