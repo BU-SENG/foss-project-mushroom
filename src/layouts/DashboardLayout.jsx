@@ -1,22 +1,28 @@
-export default function DashboardLayout({ title, children }) {
-  return (
-    <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-md p-6">
-        <h2 className="text-2xl font-bold mb-6">HMS</h2>
-        <ul className="space-y-4 text-gray-700">
-          <li className="cursor-pointer hover:text-blue-500">Dashboard</li>
-          <li className="cursor-pointer hover:text-blue-500">My Requests</li>
-          <li className="cursor-pointer hover:text-blue-500">New Request</li>
-          <li className="cursor-pointer hover:text-blue-500">Settings</li>
-        </ul>
-      </aside>
+import { useAuth } from '../hooks/useAuth';
+import Header from '../components/Header';
+import Sidebar from '../components/Sidebar';
 
-      {/* Main content */}
-      <main className="flex-1 p-8 overflow-auto">
-        <h1 className="text-3xl font-semibold mb-6">{title}</h1>
-        {children}
+const DashboardLayout = ({ title, children }) => {
+  const { profile } = useAuth();
+  const role = profile?.role;
+  console.log(profile);
+  
+  return (
+    <>
+      <Header />
+      <Sidebar role={role} />
+      <main className="pt-16 md:ml-64 transition-all duration-300 min-h-screen">
+        <div className="p-4 md:p-6">
+          {title && (
+            <h1 className="text-2xl font-semibold text-gray-800 mb-6">
+              {title}
+            </h1>
+          )}
+          {children}
+        </div>
       </main>
-    </div>
+    </>
   );
-}
+};
+
+export default DashboardLayout;

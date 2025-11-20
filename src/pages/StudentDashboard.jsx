@@ -1,38 +1,56 @@
-import DashboardLayout from "../layouts/DashboardLayout";
-import RequestCard from "../components/RequestCard";
+import { useState, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom";
+import { Plus } from "lucide-react";
+import { useAuth } from "../hooks/useAuth";
+import { Button } from "../components/ui";
+import RequestList from "../components/RequestList";
+import { fetchMaintenanceRequests } from "../utils/supabase";
 
-export default function StudentDashboard() {
-  // Temporary mock data until auth + backend are ready
-  const requests = [
-    {
-      id: 1,
-      room: "B12",
-      issue: "Broken fan",
-      status: "pending",
-      date: "2025-11-18",
-    },
-    {
-      id: 2,
-      room: "D04",
-      issue: "Water leakage",
-      status: "resolved",
-      date: "2025-11-17",
-    },
-  ];
+const StudentDashboard = () => {
+  const { user, profile } = useAuth();
+  const [requests, setRequests] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const loadRequests = useCallback(async () => {
+    if (!user) return;
+    setLoading(true);
+
+    const fetchedRequests = await fetchMaintenanceRequests(user.id);
+    setRequests(fetchedRequests);
+    setLoading(false);
+  }, [user]);
+
+  useEffect(() => {
+    loadRequests();
+  }, [loadRequests]);
+
+  if (loading) {
+    return <div className="p-6 text-center">Loading your requests...</div>;
+  }
 
   return (
-    <DashboardLayout title="My Maintenance Requests">
-      {requests.length === 0 ? (
-        <p className="text-gray-500">You have no maintenance requests yet.</p>
-      ) : (
-        <div className="space-y-4">
-          {requests.map((req) => (
-            <RequestCard key={req.id} request={req} />
-          ))}
-        </div>
-      )}
-    </DashboardLayout>
+    <div className="space-y-8">
+      <div className="flex justify-between items-center">
+        <h1 className="text-3xl font-bold text-gray-800">
+          Welcome, {profile?.full_name || "Student"}
+        </h1>
+        <Link to="/dashboard/new">
+          <Button variant="success" Icon={Plus}>
+            Create New Request
+          </Button>
+        </Link>
+      </div>
+      <p className="text-gray-600">
+        Here you can see the status of your reported maintenance issues.
+      </p>
+
+      <RequestList
+        requests={requests}
+        role={profile?.role}
+        onRefresh={loadRequests}
+      />
+    </div>
   );
-}
+};
 
-
+export default StudentDashboard;
