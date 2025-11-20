@@ -1,101 +1,85 @@
+# 🍄 foss-project-mushroom
 
-# React + Vite
+A modern, full-stack web application built as an open-source project to demonstrate best practices in application development, user authentication, and data reporting. This project emphasizes a component-based architecture and features seamless integration with a powerful Backend as a Service (BaaS) platform.
 
-This project (Mushroom) is a React application scaffolded with Vite. It provides a lightweight starter with common UI components, routing, and Supabase integration for backend data storage. The repo includes sample data in `src/data/` and reusable UI primitives in `src/components/ui/`.
+## ✨ Features
 
-## React Compiler
+* **User Authentication**: Secure sign-up, login, and protected routes powered by the **Supabase** client library and a custom `useAuth` hook.
+* **Intuitive Routing**: Uses `react-router-dom` to manage public routes (`/`, `/about`, `/features`, `/contact`) and protected user routes (`/dashboard`, `/settings`).
+* **Client-Side PDF Generation**: Ability to generate reports or export data documents directly from the browser using **jsPDF** and **jspdf-autotable**.
+* **Responsive & Modern UI**: Styled using **Tailwind CSS** for a utility-first, responsive, and easily customizable design.
+* **Modern Tooling**: Built with **Vite** for a fast development experience and efficient production bundling.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+***
 
-## Expanding the ESLint configuration
+## ⚙️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This project is built using the following core technologies:
 
----
+| Category | Technology | Description |
+| :--- | :--- | :--- |
+| **Frontend** | **React** (v19.x) | Core JavaScript library for building the user interface. |
+| **Styling** | **Tailwind CSS** | Utility-first CSS framework for rapid UI development. |
+| **Backend/BaaS** | **Supabase** | Open-source Firebase alternative for database and authentication. |
+| **Tooling** | **Vite** | Next-generation build tool for development and production. |
+| **Reporting**| **jsPDF** | Library for generating PDF documents in the browser. |
 
-## Project Description
+***
 
-A Foss Hostel management system for schools hostel built with React. It helps students track resolution progress and maintenance staff view and update assigned maintenance request
+## 🚀 Getting Started
 
-## Features 
+To get a local copy of the project up and running, follow these simple steps.
 
-Report issues in the hall 
-Updates on reported issues 
-Mobile responsive design 
-Secure authentication 
+### Prerequisites
 
-## Setup / Getting Started
+* **Node.js** (LTS version recommended)
+* **npm** (or Yarn/pnpm)
 
-These steps will get the project running on your local machine:
+### Installation
 
-1. Install Node.js (LTS recommended). Verify the installation:
+1. **Clone the repository:**
 
-	node --version
+    ```bash
+    git clone [https://github.com/BU-SENG/foss-project-mushroom.git](https://github.com/BU-SENG/foss-project-mushroom.git)
+    cd foss-project-mushroom
+    ```
 
-2. Install dependencies:
+2. **Install dependencies:**
 
-	npm install
+    ```bash
+    npm install
+    ```
 
-3. Start the development server:
+### Environment Variables
 
-	 vite 
- 
+This project requires connection details for your Supabase instance. Create a file named **`.env`** in the root directory and add the following keys, replacing the placeholders:
+VITE_SUPABASE_URL="YOUR_SUPABASE_PROJECT_URL"VITE_SUPABASE_ANON_KEY="YOUR_SUPABASE_ANON_PUBLIC_KEY"
 
-5. Open the app in your browser at `http://localhost:5173` (Vite default).
+### Running the Project
 
-Optional commands:
+Run the development server:
 
-- Build for production: `npm run build`
-- Preview the production build locally: `npm run preview`
-- Lint the project: `npm run lint`
+```bash
+npm run dev
+```
 
+The application will be accessible at the address logged by Vite (typically http://localhost:5173).
 
-## Libraries & Tools Used
+### Available Scripts
 
-Key dependencies 
+| Script | Command | Description |
+| :--- | :--- | :--- |
+|Start Dev Server | npm run dev | Starts the development server with HMR. |
+|Build | npm run build | Compiles the project for production. |
+|Lint | npm run lint | Runs ESLint for code quality and style checking. |
+|Preview | npm run preview | Serves the production build locally. |
 
-- React / React DOM — UI library
-- Vite — Development server and build tool
-- React Router DOM — Client-side routing
-- Tailwind CSS — Utility-first CSS framework
-- Lucide React — Icons
-- Supabase JS — Backend client for Supabase
+## 🤝 Contributing
 
-Dev tooling:
+Contributions are what make the open-source community an incredible place to learn and build. Your help is greatly appreciated!
 
-- ESLint (with plugins) — Linting
-- @vitejs/plugin-react — Vite React plugin
+Please see the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to submit bug reports, suggest features, and contribute code via pull requests.
 
+## 📄 License
 
-
-
-
-
-## Team Members
-ADEBAJO OLUWATONI ESTHER 
-ADENUBI GBENGA ISAIAH
-ADEOLA ENITAN-AYO OLUWASEUN
-AGOMUO WISDOM CHIEMEZIE
-ALABI REUBEN OSIGBODI
-ALO OLUWATOBI PETER
-ALOZIE FAVOUR CHIZURUOKE
-APAGU DAVID GAMBO
-CHRIS-ESEZOBOR EJODAMEN GEORGE
-EGBU PRINCESS RONI 
-
-## Contributing
-This is a FOSS project. Contributions are welcome!
-1. Fork the repository 
-2. Create your feature branch 
-3. Commit your changes 
-4. Push to the branch 
-5. Open pull request 
-
-
-## License 
-Open source - Free to use and modify 
-
-## Support 
-For issues and questions, please open an issue on the repository
-
-Built by Mushroom group of SENG 411 Babcock University 
+Distributed under the MIT License. See the LICENSE file for more details.
