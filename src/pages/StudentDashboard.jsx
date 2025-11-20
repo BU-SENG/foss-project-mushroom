@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { Plus } from "lucide-react";
 import { useAuth } from "../hooks/useAuth";
-import { Button } from "../components/ui";
+import { Button, LoadingSpinner } from "../components/ui";
 import RequestList from "../components/RequestList";
 import { fetchMaintenanceRequests } from "../utils/supabase";
 
@@ -25,7 +25,7 @@ const StudentDashboard = () => {
   }, [loadRequests]);
 
   if (loading) {
-    return <div className="p-6 text-center">Loading your requests...</div>;
+    return <LoadingSpinner />;
   }
 
   return (
