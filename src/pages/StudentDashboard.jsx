@@ -1,4 +1,3 @@
-import DashboardLayout from "../layouts/DashboardLayout";
 import RequestCard from "../components/RequestCard";
 
 export default function StudentDashboard() {
@@ -21,7 +20,7 @@ export default function StudentDashboard() {
   ];
 
   return (
-    <DashboardLayout title="My Maintenance Requests">
+    <>
       {requests.length === 0 ? (
         <p className="text-gray-500">You have no maintenance requests yet.</p>
       ) : (
@@ -31,7 +30,7 @@ export default function StudentDashboard() {
           ))}
         </div>
       )}
-    </DashboardLayout>
+    </>
   );
 }
 
