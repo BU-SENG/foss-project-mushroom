@@ -1,0 +1,21 @@
+full_name,room_number,email
+Alice Johnson,A101,alice.johnson@babcock.edu.ng
+Bob Smith,A102,bob.smith@babcock.edu.ng
+Chinedu Okafor,A103,chinedu.okafor@babcock.edu.ng
+Grace Williams,B201,grace.williams@babcock.edu.ng
+José Álvarez,B202,jose.alvarez@babcock.edu.ng
+Duplicate Name,C301,duplicate@babcock.edu.ng
+Duplicate Name,C302,duplicate2@babcock.edu.ng
+Fatima Bello,D401,fatima.bello@babcock.edu.ng
+Kwame Mensah,D402,kwame.mensah@babcock.edu.ng
+Missing Email,E101,
+Oluwaseun Adeyemi,E102,oluwaseun.adeyemi@babcock.edu.ng
+Maryam Hassan,E103,maryam.hassan@babcock.edu.ng
+David Brown,F201,david.brown@babcock.edu.ng
+Sarah Lee,F202,sarah.lee@babcock.edu.ng
+Ahmed Musa,F203,ahmed.musa@babcock.edu.ng
+Zhang Wei,G301,zhang.wei@babcock.edu.ng
+Emily Davis,G302,emily.davis@babcock.edu.ng
+John Doe,H101,john.doe@babcock.edu.ng
+Jane Doe,H102,jane.doe@babcock.edu.ng
+Tosin Adebayo,H103,tosin.adebayo@babcock.edu.ng
