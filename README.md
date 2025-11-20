@@ -106,6 +106,6 @@ Please refer to the separate **[CONTRIBUTIONS.md](docs/CONTRIBUTIONS.md)** file 
 
 ## 📄 License
 
-This project is licensed under the **MIT License**.
+This project is licensed under the **GPL license**.
 
 See the `LICENSE` file for more details.
