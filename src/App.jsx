@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound.jsx";
 import AdminDashboard from "./pages/AdminDashboard";
 import DashboardLayout from "./layouts/DashboardLayout";
 import Header from "./components/Header";
+import Settings from "./pages/Settings.jsx";
 
 const ProtectedDashboardRoute = ({ element, allowedRoles = [] }) => (
   <ProtectedRoute allowedRoles={allowedRoles}>
@@ -60,11 +61,19 @@ function App() {
             }
           />
           <Route
-            path="/dashboard/new"
+            path="/dashboard/new-request"
             element={
               <ProtectedDashboardRoute
                 element={<CreateRequest />}
                 allowedRoles={["student"]}
+              />
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <ProtectedDashboardRoute
+                element={<Settings />}
               />
             }
           />

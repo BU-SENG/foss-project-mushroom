@@ -21,7 +21,6 @@ const Sidebar = ({ role }) => {
   const [expandedMenus, setExpandedMenus] = useState({});
   const [activeItem, setActiveItem] = useState("dashboard");
 
-  // Define navigation links based on user role
   const menuItems = [
     {
       id: "dashboard",
@@ -54,7 +53,7 @@ const Sidebar = ({ role }) => {
   if (role === "student") {
     menuItems.push({
       id: "requests",
-      path: "/student/requests",
+      path: "/dashboard/new-request",
       icon: Users,
       label: "Requests",
       roles: ["student"],

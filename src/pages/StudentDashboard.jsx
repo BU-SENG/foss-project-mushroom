@@ -34,7 +34,7 @@ const StudentDashboard = () => {
         <h1 className="text-3xl font-bold text-gray-800">
           Welcome, {profile?.full_name || "Student"}
         </h1>
-        <Link to="/dashboard/new">
+        <Link to="/dashboard/new-request">
           <Button variant="success" Icon={Plus}>
             Create New Request
           </Button>

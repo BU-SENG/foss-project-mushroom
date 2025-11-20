@@ -108,6 +108,17 @@ export default function Register() {
           >
             {loading ? "Creating..." : "Create account"}
           </Button>
+
+          <div className="text-sm text-center text-gray-600">
+            Already have an account?{" "}
+            <button
+              type="button"
+              className="text-indigo-600 font-semibold"
+              onClick={() => nav("/login")}
+            >
+              Log in
+            </button>
+          </div>
         </form>
       </Card>
     </div>
