@@ -45,11 +45,6 @@ export async function fetchMaintenanceRequests(studentId = null) {
   }));
 }
 
-/**
- * Updates the status of a specific maintenance request.
- * @param {string} requestId 
- * @param {string} newStatus 
- */
 export async function updateRequestStatus(requestId, newStatus) {
   const { error } = await supabase
     .from('maintenance_requests')
@@ -63,4 +58,42 @@ export async function updateRequestStatus(requestId, newStatus) {
   return { success: true };
 }
 
+// src/utils/supabase.js (ADD THIS FUNCTION)
 
+// ... existing functions (fetchMaintenanceRequests, updateRequestStatus) ...
+
+/**
+ * Updates user profile data (name and room) in the profiles table.
+ * @param {string} userId - The ID of the user to update.
+ * @param {object} updates - Object containing fields to update (e.g., { full_name: 'New Name', room: 'B101' }).
+ */
+export async function updateProfile(userId, updates) {
+  const { error } = await supabase
+    .from('profiles')
+    .update(updates)
+    .eq('id', userId);
+
+  if (error) {
+    console.error('Error updating profile:', error);
+    return { success: false, error: error.message };
+  }
+  return { success: true };
+}
+
+/**
+ * Updates the user's password using Supabase Auth.
+ * @param {string} newPassword - The new password.
+ */
+export async function updatePassword(newPassword) {
+  // Note: Supabase requires the user to be recently signed in for this to work.
+  const { error } = await supabase.auth.updateUser({ password: newPassword });
+
+  if (error) {
+    console.error('Error updating password:', error);
+    return { success: false, error: error.message };
+  }
+  return { success: true };
+}
+
+// Ensure you export the new functions
+// export { supabase, fetchMaintenanceRequests, updateRequestStatus, updateProfile, updatePassword };
