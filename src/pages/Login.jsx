@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, Input, Button } from "../components/ui";
 import useAuth from "../hooks/useAuth";
 
 export default function Login() {
   const nav = useNavigate();
-  const { login, fetchProfile } = useAuth();
+  const { user, login, fetchProfile } = useAuth();
 
   const [form, setForm] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
@@ -44,8 +44,7 @@ export default function Login() {
       const profile = await fetchProfile(user.id);
       const role = profile?.role;
 
-      if (role === "student") nav("/student/dashboard");
-      else if (role === "admin") nav("/dashboard");
+      if (role) nav("/dashboard");
       else nav("/");
     } catch (err) {
       setError(err?.message || "Unexpected error occurred.");
@@ -53,6 +52,13 @@ export default function Login() {
       setLoading(false);
     }
   }
+
+  useEffect(() => {
+    if (user) {
+      nav("/dashboard");
+      console.log(user);
+    }
+  }, [user]);
 
   return (
     <div className="p-6 w-full max-w-lg mx-auto h-[calc(100vh-4rem)] sm:h-[calc(100vh-8rem)] flex flex-col items-center justify-center">

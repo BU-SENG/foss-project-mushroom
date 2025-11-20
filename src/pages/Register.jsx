@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { replace, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 import { Card, Input, Button } from "../components/ui";
 
 export default function Register() {
   const nav = useNavigate();
-  const { register, loading } = useAuth();
+  const { user, register, loading } = useAuth();
 
   const [form, setForm] = useState({
     email: "",
@@ -48,6 +48,12 @@ export default function Register() {
     );
     nav("/login");
   }
+
+  useEffect(() => {
+    if (user) {
+      replace("/dashboard");
+    }
+  }, [user]);
 
   return (
     <div className="p-6 w-full max-w-lg mx-auto h-[calc(100vh-4rem)] sm:h-[calc(100vh-8rem)] flex flex-col items-center justify-center">
