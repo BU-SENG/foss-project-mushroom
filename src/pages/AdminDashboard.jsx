@@ -26,15 +26,11 @@ const AdminDashboard = () => {
   }, [loadRequests]);
 
   const handleExport = () => {
-    // Corrected line: removed 'CX' typo
     if (!requests || requests.length === 0) {
       alert("No data to export.");
       return;
     }
 
-    // The reportGenerator expects 'student.full_name'.
-    // fetchMaintenanceRequests returns 'requester_name' (flattened) and 'profiles' (nested).
-    // We map the data to match the report generator's expected structure on the fly.
     const formattedData = requests.map((req) => ({
       ...req,
       student: {
