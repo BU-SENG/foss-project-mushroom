@@ -1,39 +1,50 @@
-# 🍄 foss-project-mushroom
+# Hall Maintenance System
 
-A modern, full-stack web application built as an open-source project to demonstrate best practices in application development, user authentication, and data reporting. This project emphasizes a component-based architecture and features seamless integration with a powerful Backend as a Service (BaaS) platform.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![GitHub contributors](https://img.shields.io/github/contributors/BU-SENG/foss-project-mushroom)](https://github.com/BU-SENG/foss-project-mushroom/graphs/contributors)
+[![Open Source Love](https://badges.frap.codes/a00/oss.svg?v=103)](https://github.com/BU-SENG/foss-project-mushroom)
 
-## ✨ Features
+---
 
-* **User Authentication**: Secure sign-up, login, and protected routes powered by the **Supabase** client library and a custom `useAuth` hook.
-* **Intuitive Routing**: Uses `react-router-dom` to manage public routes (`/`, `/about`, `/features`, `/contact`) and protected user routes (`/dashboard`, `/settings`).
-* **Client-Side PDF Generation**: Ability to generate reports or export data documents directly from the browser using **jsPDF** and **jspdf-autotable**.
-* **Responsive & Modern UI**: Styled using **Tailwind CSS** for a utility-first, responsive, and easily customizable design.
-* **Modern Tooling**: Built with **Vite** for a fast development experience and efficient production bundling.
+## 💡 About the Project
 
-***
+The **Hall Maintenance System** is a full-stack web application designed to streamline and manage maintenance requests within a hostel or university hall environment. It provides a dedicated portal for **Students** to submit issues and an **Admin Dashboard** for staff to track, manage, and resolve those requests efficiently.
 
-## ⚙️ Tech Stack
+### Key Features
 
-This project is built using the following core technologies:
+* **Role-Based Authentication:** Separate dashboards and access controls for **Students** and **Admins**.
+* **Request Submission:** Students can easily create new maintenance requests, specifying the issue category, room number, and description.
+* **Request Tracking:** Students can view the status of their submitted requests (e.g., `pending`, `in progress`, `resolved`).
+* **Admin Management:** Admins have full visibility over all maintenance requests and can update their status to reflect progress.
+* **Reporting:** Admins can generate and download reports (PDFs) of maintenance data for auditing and analysis.
+* **User Settings:** Users can manage their account information and update their password.
+
+---
+
+## 🛠️ Tech Stack
+
+This project is built using modern web technologies:
 
 | Category | Technology | Description |
 | :--- | :--- | :--- |
-| **Frontend** | **React** (v19.x) | Core JavaScript library for building the user interface. |
+| **Frontend** | **React** (with Vite) | A fast, modern library for building the user interface. |
 | **Styling** | **Tailwind CSS** | Utility-first CSS framework for rapid UI development. |
-| **Backend/BaaS** | **Supabase** | Open-source Firebase alternative for database and authentication. |
-| **Tooling** | **Vite** | Next-generation build tool for development and production. |
-| **Reporting**| **jsPDF** | Library for generating PDF documents in the browser. |
+| **Backend/DB** | **Supabase** | A powerful open-source Firebase alternative providing database (PostgreSQL) and authentication services. |
+| **PDF Generation** | `jspdf`, `jspdf-autotable` | Used for generating comprehensive reports (Admin feature). |
 
-***
+---
 
 ## 🚀 Getting Started
 
-To get a local copy of the project up and running, follow these simple steps.
+Follow these steps to set up the project locally.
 
 ### Prerequisites
 
-* **Node.js** (LTS version recommended)
-* **npm** (or Yarn/pnpm)
+You will need the following installed:
+
+* Node.js (version 18+)
+* npm or yarn
+* A **Supabase** account to host the database and authentication.
 
 ### Installation
 
@@ -48,38 +59,53 @@ To get a local copy of the project up and running, follow these simple steps.
 
     ```bash
     npm install
+    # or
+    yarn install
     ```
 
-### Environment Variables
+3. **Setup Environment Variables:**
+    Create a file named `.env` in the root directory and add your Supabase credentials. You can find these in your Supabase project settings.
 
-This project requires connection details for your Supabase instance. Create a file named **`.env`** in the root directory and add the following keys, replacing the placeholders:
-VITE_SUPABASE_URL="YOUR_SUPABASE_PROJECT_URL"VITE_SUPABASE_ANON_KEY="YOUR_SUPABASE_ANON_PUBLIC_KEY"
+    ```bash
+    VITE_SUPABASE_URL="YOUR_SUPABASE_PROJECT_URL"
+    VITE_SUPABASE_ANON_KEY="YOUR_SUPABASE_ANON_KEY"
+    ```
 
-### Running the Project
+    *Note: The system requires these variables to connect to the backend.*
 
-Run the development server:
+4. **Run Locally:**
 
-```bash
-npm run dev
-```
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    ```
 
-The application will be accessible at the address logged by Vite (typically http://localhost:5173).
+### Database Setup
 
-### Available Scripts
+The project relies on two main tables in your Supabase instance:
 
-| Script | Command | Description |
-| :--- | :--- | :--- |
-|Start Dev Server | npm run dev | Starts the development server with HMR. |
-|Build | npm run build | Compiles the project for production. |
-|Lint | npm run lint | Runs ESLint for code quality and style checking. |
-|Preview | npm run preview | Serves the production build locally. |
+1. `profiles`: Stores user data, linked to `auth.users`, and contains the `role` (`student` or `admin`).
+2. `maintenance_requests`: Stores all submitted requests, including `category`, `room`, `description`, and `status`.
+
+You should also ensure **Row Level Security (RLS)** is enabled for role-based access control, as the application uses it to restrict students to only viewing their own requests.
+
+---
 
 ## 🤝 Contributing
 
-Contributions are what make the open-source community an incredible place to learn and build. Your help is greatly appreciated!
+We welcome contributions to the Hall Maintenance System!
 
-Please see the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to submit bug reports, suggest features, and contribute code via pull requests.
+Please refer to the separate **[CONTRIBUTIONS.md](docs/CONTRIBUTIONS.md)** file for detailed guidelines on:
+
+* Branch Naming Convention (e.g., `backend/supabase-setup`).
+* Commit Message Convention (e.g., `feat: add maintenance_requests table with RLS policies`).
+* Pull Request (PR) and GitHub Issue workflow.
+
+---
 
 ## 📄 License
 
-Distributed under the MIT License. See the LICENSE file for more details.
+This project is licensed under the **MIT License**.
+
+See the `LICENSE` file for more details.
